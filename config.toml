@@ -1,0 +1,11 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "Felix' FP-Blog"
+theme = [ "beautifulhugo" ]
+
+[Author]
+  name = "Felix Bjært Hargreaves"
+  github = "hejfelix"
+  twitter = "FelixHargreaves"
+  linkedin = "felix-hargreaves-9b0b3035"
+  stackoverflow = "users/238100/felix"
