@@ -9,3 +9,8 @@ theme = [ "beautifulhugo" ]
   twitter = "FelixHargreaves"
   linkedin = "felix-hargreaves-9b0b3035"
   stackoverflow = "users/238100/felix"
+
+[markup.highlight]
+    codeFences = true
+    style = "tango"
+    tabWidth = 4
