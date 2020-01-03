@@ -9,15 +9,20 @@ publishdate: 2019-12-30T18:46:05+01:00
 
 **Scala** is a great multi-paradigm programming language, but what's in a *paradigm*?
 
-<!--more-->
-
 > **Paradigm**: *a world view underlying the theories and methodology of a particular scientific subject.*
 
 
-</more>
 If a paradigm is a **world view**, it should encompass everything about a specific programming language. Programming languages that hail from academia tend to be very true to the underlying model of computation, casting all language constructs in the light of that model.
 
+{{<giphy Ec3BFLEq2M5gI>}}
+
+<!--more-->
+
+# Haskell
+
+
 **Haskell** is a good example of a language where both syntax and language constructs are clearly based on the *lambda calculus*. *Function application* is denoted simply by arranging the function and arguments next to each other:
+
 
 ```haskell
 f x
@@ -56,7 +61,7 @@ This leads us to another feature of Haskell, namely **currying** by default. In 
 
 `builtin` can then be calculated using the instructions and integers of the CPU on the current platform. It *is* possible to encode integers and addition in the pure lambda calculus, but it gets hairy very quickly, and it's a good place to *draw the line between theory and pragmatism*.
 
-## Function Literals
+## Functions
 
 A function definition in **Haskell** is a bit of syntax sugar for the lambda calculus:
 
@@ -86,7 +91,7 @@ Rules use the *entailment* **( $\vdash$ )** symbol written in ASCII as:
 disney :- dog(goofy), mouse(mickey). 
 ```
 
-meaning that `disney` entails that `goofy` is a dog **and** `mickey` is a mouse. If you squint, `:-` kinda looks like the turnstile **( $\vdash$ )** symbol. Note also, that commas denote **conjunction**, like they often do in math.
+meaning that `disney` entails that `goofy` is a dog **and** `mickey` is a mouse. If you squint, `:-` kinda looks like the turnstile **( $\vdash$ )** symbol. Note also that commas denote **conjunction** like they often do in mathematical notation.
 
 Goofy and Mickey can be replaced by variables as such:
 
@@ -100,7 +105,11 @@ These programs are equivalent, i.e., they yield the same facts. If you squint ag
 
 ## Curry-Howard-Lambek correspondence
 
-It turns out that logic, lambda calculus, and turing machines are equivalent in terms of *what they can do*. This is interesting in many ways. With this in mind, you could think of the different paradigms as simply *your choice of programming style*. Furthermore, in a programming language like [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since **type systems are based on logic**, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to **unsound** behaviour when viewing terms as logic propositions.
+It turns out that logic, lambda calculus, and turing machines are equivalent in terms of *what they can do*. This is interesting in many ways. With this in mind, you could think of the different paradigms as simply *your choice of programming style*. 
+
+{{< giphy SuBYa2XO3aVH8Qt8IK >}}
+
+In the programming language [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since **type systems are based on logic**, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to **unsound** behaviour when viewing terms as logic propositions.
 
 There is much beauty to be found in the Curry-Howard-Lambek correspondence and its many implications, but the software industry doesn't care about beauty in general. It is notoriously difficult to quantify productivity gains from even the most basic type system, and this leads to an ongoing discussion on whether or not dynamic or static typing is "*better*". **Google** [released an article](https://days2011.scala-lang.org/sites/days2011/files/ws3-1-Hundt.pdf) comparing the productivity and performance of `C++`, `Java`, `Go`, and `Scala`, however, making conclusions based on different people's solutions with different programming languages always seems to border on the philosophical. This is mainly true because it's not possible to remove the human factor -- once I have experience with a specific problem, solving it again in another language would give that language an unfair advantage. In other words: 
 
@@ -121,7 +130,20 @@ One answer to this problem was "objects". As I am writing this, I realize that g
 
 > Object oriented programming is one of the most successful approaches to modularity in the software industry to this date.
 
+## Are modules part of the paradigm?
+
+I would separate the *paradigm of computation* from the *paradigm of modularization*. The distinction of different "categories" of paradigms is often left to interpretation. I would suggest a few different categories like:
+
+* Computational (what's the underlying model for computation, e.g. functional, logic, imperative,...)
+* Organizational (how are modules organized, e.g. files, packages, classes, objects, structs, ...)
+* Methodology (abstract vs. non abstract, e.g. declarative vs imperative)
+
+You could add an arbitrary amount of categories to this list, but I feel like at least these 3 are useful. In the next few blog posts, I will concentrate on how the different *organizational* constructs in *Scala* solve programming challenges.
+
+
 ## SOLID principle
+
+> Note: I am not a fan of Robert C. Martin, and he is one of the few people I have blocked on Twitter. However, I realize that his work has inspired many and that SOLID is accepted as gospel to many, hence this section.
 
 The main goals of object oriented programming are:
 
@@ -147,6 +169,8 @@ In a mixed paradigm language like Scala, we have many different ways to express 
 How on earth do we choose the right language feature for the right problem? What even constitutes a "right" choice? 
 
 # Testing
+
+{{<giphy tK5JkmMAPveNO>}}
 
 Most often, I find that writing tests for my code is a great way to quantify the modularity of the code. How easy is it to isolate the functions that I want to test? How much boiler plate do I need to set up my test cases? Can I run my tests in parallel? Do I need "**hacks**" to inspect the internals of the modules that I'm testing?
 
@@ -205,4 +229,8 @@ It doesn't really leave us with much in terms of professional satisfaction.
 
 In the next few posts, I want to investigate how modularity is solved with different approaches like `classes and interfaces`, `typeclasses`, `final tagless`, and `free monads`. 
 
-Does one approach lead to smaller modules? What's the weight in terms of boiler plate? What kind of background and understanding is needed for each approach? How do our tests change based on the different approaches? I don't have all the answers yet, but I'm looking forward to aligning my thoughts on modularity and functional programming.
+Does one approach lead to smaller modules? What's the weight in terms of boiler plate? What kind of background and understanding is needed for each approach? How do our tests change based on the different approaches? I don't have all the answers yet, but I'm looking forward to aligning my thoughts on modularity and functional programming. 
+
+See you in the next post 👋🏻
+
+{{<giphy l1J3CbFgn5o7DGRuE>}}
