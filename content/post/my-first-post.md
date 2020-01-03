@@ -1,3 +1,4 @@
+
 ---
 title: "Modularity in Scala"
 draft: true
@@ -8,9 +9,12 @@ publishdate: 2019-12-30T18:46:05+01:00
 
 **Scala** is a great multi-paradigm programming language, but what's in a *paradigm*?
 
+<!--more-->
 
 > **Paradigm**: *a world view underlying the theories and methodology of a particular scientific subject.*
 
+
+</more>
 If a paradigm is a **world view**, it should encompass everything about a specific programming language. Programming languages that hail from academia tend to be very true to the underlying model of computation, casting all language constructs in the light of that model.
 
 **Haskell** is a good example of a language where both syntax and language constructs are clearly based on the *lambda calculus*. *Function application* is denoted simply by arranging the function and arguments next to each other:
@@ -21,7 +25,8 @@ f x
 where `f` is a function, and `x` is an argument to which `f` is applied. 
 In the lambda calculus, function application uses the exact same notation:
 
-> \\[ f x \\]
+
+> $ f x $
 
 In Haskell, function literals are defined by backslashes:
 
@@ -32,7 +37,7 @@ In Haskell, function literals are defined by backslashes:
 
 the reasoning behind the backslash is that it *"kinda looks like half-a-lambda symbol"*. (The $\lambda$ symbol is also nowhere to be found on most keyboards). Consider the corresponding notation in lambda calculus:
 
-> \\[ \lambda x . + x x \\]
+> $ \lambda x . + x x $
 
 > **NOTE**: `+` is not a part of the lambda calculus, we just use it as a placeholder for a function that implements addition. **The same goes for integer literals.**
 
@@ -40,7 +45,7 @@ the reasoning behind the backslash is that it *"kinda looks like half-a-lambda s
 
 This leads us to another feature of Haskell, namely **currying** by default. In the lambda calculus, there are only functions of 0 arguments (constants) and functions of 1 argument. How does addition work, then? It clearly needs 2 operands. The `(+)` function takes a single number and yields a function which "stores" this first argument. The new function can only add to this number, i.e., the first argument is considered a constant at this point. 
 
-> \\[ (+) = \lambda x . \lambda y . \mathtt{builtin (x,y)} \\]
+> $$ (+) = \lambda x . \lambda y . \mathtt{builtin (x,y)} $$
 
 > \begin{align} 
 > &(+) \\;  39 \\;  3 
@@ -61,11 +66,11 @@ addmul x y = (+) x ((*) x y)
 
 we can desugar that as:
 
->  \\[ addmul = \lambda x . \lambda y .  + x  \\; (* \\; x \\; y) \\]
+>  $$ addmul = \lambda x . \lambda y .  + x  \\; (* \\; x \\; y) $$
 
 Since the lambdacalculus doesn't include the (=) equality term, we can bind our function as an argument to the rest of the program like so:
 
-> \\[ (\lambda addmul . \\; \mathbb{P})  (\lambda x . \\; \lambda y .  + \\; x \\; (* \\; x \\; y)) \\]
+> $$ (\lambda addmul . \\; \mathbb{P})  (\lambda x . \\; \lambda y .  + \\; x \\; (* \\; x \\; y)) $$
 
 where $\mathbb{P}$ is "the rest of our program", now with the definition of `addmul` in scope.
 

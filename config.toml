@@ -1,6 +1,6 @@
 baseURL = "https://hejfelix.github.io/blog/"
 languageCode = "en-us"
-title = "Felix' FP-Blog"
+title = "Felix' Programming Blog"
 theme = [ "beautifulhugo" ]
 
 [Author]
@@ -17,3 +17,6 @@ theme = [ "beautifulhugo" ]
 
 [Params]
   readingTime = true
+  description = "Ramblings about programming"
+  author = "Felix Bjært Hargreaves"
+  logo = "images/avatar_square.jpg"
