@@ -1,13 +1,11 @@
 
 ---
-title: "Modularity in Scala"
+title: "Modularity and Paradigms"
 draft: true
 publishdate: 2019-12-30T18:46:05+01:00
 ---
 
-# What's in a paradigm?
-
-**Scala** is a great multi-paradigm programming language, but what's in a *paradigm*?
+**Scala** is a great *multi-paradigm* programming language, but what's in a *paradigm*?
 
 > **Paradigm**: *a world view underlying the theories and methodology of a particular scientific subject.*
 
@@ -73,7 +71,7 @@ we can desugar that as:
 
 >  $$ addmul = \lambda x . \lambda y .  + x  \\; (* \\; x \\; y) $$
 
-Since the lambdacalculus doesn't include the (=) equality term, we can bind our function as an argument to the rest of the program like so:
+Since the lambda calculus doesn't include the (=) equality term, we can bind our function as an argument to the rest of the program like so:
 
 > $$ (\lambda addmul . \\; \mathbb{P})  (\lambda x . \\; \lambda y .  + \\; x \\; (* \\; x \\; y)) $$
 
@@ -105,17 +103,23 @@ These programs are equivalent, i.e., they yield the same facts. If you squint ag
 
 ## Curry-Howard-Lambek correspondence
 
-It turns out that logic, lambda calculus, and turing machines are equivalent in terms of *what they can do*. This is interesting in many ways. With this in mind, you could think of the different paradigms as simply *your choice of programming style*. 
+It turns out that logic, lambda calculus, and turing machines are equivalent in terms of <cite>*what they can do*[^2]</cite>. This is interesting in many ways. With this in mind, you could think of the different paradigms as simply *your choice of programming style*. 
+
+
+[^2]: [Curry-Howard Correspondence on Wikipedia](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
 
 {{< giphy SuBYa2XO3aVH8Qt8IK >}}
 
 In the programming language [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since **type systems are based on logic**, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to **unsound** behaviour when viewing terms as logic propositions.
 
-There is much beauty to be found in the Curry-Howard-Lambek correspondence and its many implications, but the software industry doesn't care about beauty in general. It is notoriously difficult to quantify productivity gains from even the most basic type system, and this leads to an ongoing discussion on whether or not dynamic or static typing is "*better*". **Google** [released an article](https://days2011.scala-lang.org/sites/days2011/files/ws3-1-Hundt.pdf) comparing the productivity and performance of `C++`, `Java`, `Go`, and `Scala`, however, making conclusions based on different people's solutions with different programming languages always seems to border on the philosophical. This is mainly true because it's not possible to remove the human factor -- once I have experience with a specific problem, solving it again in another language would give that language an unfair advantage. In other words: 
+There is much beauty to be found in the Curry-Howard-Lambek correspondence and its many implications, but the software industry doesn't care about beauty in general. It is notoriously difficult to quantify productivity gains from even the most basic type system, and this leads to an ongoing discussion on whether or not dynamic or static typing is "*better*". 
+
+**Google** <cite>released an article[^1]</cite> comparing the productivity and performance of `C++`, `Java`, `Go`, and `Scala`, however, making conclusions based on different people's solutions with different programming languages always seems to border on the philosophical. This is mainly true because it's not possible to remove the human factor -- once I have experience with a specific problem, solving it again in another language would give that language an unfair advantage. In other words: 
 
 > there is no way to separate the **programming discipline** from the **problem solving discipline**.
 
-
+[^1]: [Loop Recognition in C++/Java/Go/Scala](https://days2011.scala-lang.org/sites/days2011/files/ws3-1-Hundt.pdf), Robert Hundt, Scala Days 2011.
+<!-- [^1]: asd f asdf asdfasd fasf [link](https://days2011.scala-lang.org/sites/days2011/files/ws3-1-Hundt.pdf) -->
 
 # A few words about pragmatism
 
@@ -145,7 +149,7 @@ You could add an arbitrary amount of categories to this list, but I feel like at
 
 > Note: I am not a fan of Robert C. Martin, and he is one of the few people I have blocked on Twitter. However, I realize that his work has inspired many and that SOLID is accepted as gospel to many, hence this section.
 
-The main goals of object oriented programming are:
+The main design principles of object oriented programming according to the <cite>*SOLID principle*[^3]</cite> are:
 
 1. Single responsibility
 1. Open-closed
@@ -167,6 +171,8 @@ In a mixed paradigm language like Scala, we have many different ways to express 
 8. typeclasses
 
 How on earth do we choose the right language feature for the right problem? What even constitutes a "right" choice? 
+
+[^3]: [SOLID principle on Wikipedia](https://en.wikipedia.org/wiki/SOLID)
 
 # Testing
 
