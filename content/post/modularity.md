@@ -210,7 +210,7 @@ testing it would amount to something like:
 assert(sum(List(1,2,3)) == 6)
 ```
 
-This is nice. This is simple. But why is it simple? If we see `sum` as a module, it deals only with the argument of interest (`xs`), and it produces only 1 result, which is the interesting result for summing up a list. There is no **overfetching** of arguments, and there is no **overproducing** of results or side effects. But the real life happens, and you need to do much much more than adding numbers:
+This is nice. This is simple. But why is it simple? If we see `sum` as a module, it deals only with the argument of interest (`xs`), and it produces only 1 result, which is the interesting result for summing up a list. There is no **overfetching** of arguments, and there is no **overproducing** of results or side effects. But then real life happens, and you need to do much much more than adding numbers:
 
 ```scala
 case class S3Conf(user: String, secret: String)
