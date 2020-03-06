@@ -1,8 +1,7 @@
 
 ---
 title: "Modularity and Paradigms"
-draft: true
-publishdate: 2019-12-30T18:46:05+01:00
+publishdate: 2020-03-06T14:37:00+01:00
 ---
 
 **Scala** is a great *multi-paradigm* programming language, but what's in a *paradigm*?
@@ -12,14 +11,14 @@ publishdate: 2019-12-30T18:46:05+01:00
 
 If a paradigm is a **world view**, it should encompass everything about a specific programming language. Programming languages that hail from academia tend to be very true to the underlying model of computation, casting all language constructs in the light of that model.
 
-{{<giphy Ec3BFLEq2M5gI>}}
+![Bill nye](/images/bill_nye.webp)
 
 <!--more-->
 
 # Haskell
 
 
-**Haskell** is a good example of a language where both syntax and language constructs are clearly based on the *lambda calculus*. *Function application* is denoted simply by arranging the function and arguments next to each other:
+**Haskell** is a good example of a language where both syntax and language constructs are clearly based on the lambda calculus. Function application is denoted simply by arranging the function and arguments next to each other:
 
 
 ```haskell
@@ -61,13 +60,21 @@ This leads us to another feature of Haskell, namely **currying** by default. In 
 
 ## Functions
 
-A function definition in **Haskell** is a bit of syntax sugar for the lambda calculus:
+A function definition in **Haskell** is a bit of syntax sugar for the lambda calculus. A straight forward function definition could look like so:
+
+```haskell
+addmul x y = x + (x * y)
+```
+
+
+but it could also be with prefix notation as such:
+
 
 ```haskell
 addmul x y = (+) x ((*) x y)
 ```
 
-we can desugar that as:
+we can then desugar that as:
 
 >  $$ addmul = \lambda x . \lambda y .  + x  \\; (* \\; x \\; y) $$
 
@@ -108,9 +115,9 @@ It turns out that logic, lambda calculus, and turing machines are equivalent in 
 
 [^2]: [Curry-Howard Correspondence on Wikipedia](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
 
-{{< giphy SuBYa2XO3aVH8Qt8IK >}}
+![So what?](/images/so_what.webp)
 
-In the programming language [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since **type systems are based on logic**, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to **unsound** behaviour when viewing terms as logic propositions.
+In the programming language [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since type systems are based on logic, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to unsound behaviour when viewing terms as logic propositions.
 
 There is much beauty to be found in the Curry-Howard-Lambek correspondence and its many implications, but the software industry doesn't care about beauty in general. It is notoriously difficult to quantify productivity gains from even the most basic type system, and this leads to an ongoing discussion on whether or not dynamic or static typing is "*better*". 
 
@@ -176,7 +183,7 @@ How on earth do we choose the right language feature for the right problem? What
 
 # Testing
 
-{{<giphy tK5JkmMAPveNO>}}
+![Testing battery on tongue](/images/testing.webp)
 
 Most often, I find that writing tests for my code is a great way to quantify the modularity of the code. How easy is it to isolate the functions that I want to test? How much boiler plate do I need to set up my test cases? Can I run my tests in parallel? Do I need "**hacks**" to inspect the internals of the modules that I'm testing?
 
@@ -227,7 +234,7 @@ class BusinessDatabase(appConf: AppConf, db: DatabaseApi, logger: Logger) {
 
 Now, our main module here is `BusinessDatabase`. It has some dependencies on `AppConf`, `DatabaseApi`, and `Logger`. We see that it implements 3 functions, each doing *something* with the database API. In that sense, it makes much sense that they exist within the same class. `listObjects`, however, is the only method that makes use of `appConf` and `logger`. Testing `insertBusinessObject` now entails the construction of both an `AppConf` and a `Logger`, even though we don't really need them. How do we solve this? We could extract the "culprit", `listObjects`, such that we could get rid of the 2 arguments for this class, but there's a good chance that we would add a new debug-log in another function down the line. Naming would also be an issue, as there's no real (=business) reason for this extraction other than testing/modularity. So we just leave this imperfection in our code 😯?
 
-{{< giphy 9J92ARAauOQfdDoKlC >}}
+![Not good enough](/images/not_good_enough.webp)
 
 It doesn't really leave us with much in terms of professional satisfaction.
 
@@ -239,4 +246,4 @@ Does one approach lead to smaller modules? What's the weight in terms of boiler 
 
 See you in the next post 👋🏻
 
-{{<giphy l1J3CbFgn5o7DGRuE>}}
+![See you](/images/see_you.webp)
