@@ -2,6 +2,8 @@ baseURL = "https://hejfelix.github.io/blog/"
 languageCode = "en-us"
 title = "Felix' Programming Blog"
 theme = [ "beautifulhugo" ]
+relativeURLs = true
+
 
 [Author]
   name = "Felix Bjært Hargreaves"

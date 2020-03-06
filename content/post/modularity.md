@@ -11,7 +11,7 @@ publishdate: 2020-03-06T14:37:00+01:00
 
 If a paradigm is a **world view**, it should encompass everything about a specific programming language. Programming languages that hail from academia tend to be very true to the underlying model of computation, casting all language constructs in the light of that model.
 
-![Bill nye](/blog/images/bill_nye.webp)
+![Bill nye](/images/bill_nye.webp)
 
 <!--more-->
 
@@ -115,7 +115,7 @@ It turns out that logic, lambda calculus, and turing machines are equivalent in 
 
 [^2]: [Curry-Howard Correspondence on Wikipedia](https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
 
-![So what?](/blog/images/so_what.webp)
+![So what?](/images/so_what.webp)
 
 In the programming language [**Idris**](https://www.idris-lang.org/), the same program can be interpreted both as a term in the lambda calculus and as a logical proposition. Since type systems are based on logic, this means that the same language can be used to talk about types and runtime behaviour. This allows for very advanced types to be defined, giving detailed guarantees about a programs *runtime behaviour* based on the programs type. **Idris** places a lot of emphasis on using **total functions**, since allowing anything else would lead to unsound behaviour when viewing terms as logic propositions.
 
@@ -183,7 +183,7 @@ How on earth do we choose the right language feature for the right problem? What
 
 # Testing
 
-![Testing battery on tongue](/blog/images/testing.webp)
+![Testing battery on tongue](/images/testing.webp)
 
 Most often, I find that writing tests for my code is a great way to quantify the modularity of the code. How easy is it to isolate the functions that I want to test? How much boiler plate do I need to set up my test cases? Can I run my tests in parallel? Do I need "**hacks**" to inspect the internals of the modules that I'm testing?
 
@@ -234,7 +234,7 @@ class BusinessDatabase(appConf: AppConf, db: DatabaseApi, logger: Logger) {
 
 Now, our main module here is `BusinessDatabase`. It has some dependencies on `AppConf`, `DatabaseApi`, and `Logger`. We see that it implements 3 functions, each doing *something* with the database API. In that sense, it makes much sense that they exist within the same class. `listObjects`, however, is the only method that makes use of `appConf` and `logger`. Testing `insertBusinessObject` now entails the construction of both an `AppConf` and a `Logger`, even though we don't really need them. How do we solve this? We could extract the "culprit", `listObjects`, such that we could get rid of the 2 arguments for this class, but there's a good chance that we would add a new debug-log in another function down the line. Naming would also be an issue, as there's no real (=business) reason for this extraction other than testing/modularity. So we just leave this imperfection in our code 😯?
 
-![Not good enough](/blog/images/not_good_enough.webp)
+![Not good enough](/images/not_good_enough.webp)
 
 It doesn't really leave us with much in terms of professional satisfaction.
 
@@ -246,4 +246,4 @@ Does one approach lead to smaller modules? What's the weight in terms of boiler 
 
 See you in the next post 👋🏻
 
-![See you](/blog/images/see_you.webp)
+![See you](/images/see_you.webp)
